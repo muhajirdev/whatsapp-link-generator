@@ -3,16 +3,21 @@ import Layout from "../components/layout";
 
 const Home = () => {
   const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
   const [text, setText] = useState("");
 
+  const trimmedPhone = phone.replace(/\s/g, "").replace(/-/g, "");
+
   const url =
-    phone && `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    phone &&
+    `https://wa.me/${country}${trimmedPhone}?text=${encodeURIComponent(text)}`;
 
   const copyUrl = () => {
     const el = document.getElementById("url");
     if (el) {
       (el as HTMLInputElement).select();
       document.execCommand("copy");
+      alert("URL copied");
     }
   };
 
@@ -21,14 +26,25 @@ const Home = () => {
       <div className="max-w-3xl mx-auto py-4 px-8">
         <div className="mb-2">
           <label className="mb-4">Phone</label>
-          <input
-            type="tel"
-            name="phone"
-            className="input"
-            placeholder="6285270401234"
-            value={phone}
-            onChange={e => setPhone(e.target.value)}
-          />
+          <div className="flex items-center">
+            <span className="mr-1">+</span>
+            <input
+              type="tel"
+              name="phone"
+              className="input w-10 mr-2 text-center truncate"
+              placeholder="1"
+              value={country}
+              onChange={e => setCountry(e.target.value)}
+            />
+            <input
+              type="tel"
+              name="phone"
+              className="input"
+              placeholder="541 754 3010"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+            />
+          </div>
         </div>
         <div className="mb-2">
           <label>Message</label>
@@ -40,14 +56,21 @@ const Home = () => {
           />
         </div>
         <div className="text-lg">URL:</div>
-        <div className="relative cursor-pointer" onClick={copyUrl}>
-          <input
-            id="url"
-            className="input cursor-pointer"
-            value={url}
-            disabled
-          />
-          <span className="absolute right-0 mr-8 mt-4">COPY</span>
+        <div className="cursor-pointer">
+          <div className="flex items-center">
+            <input
+              id="url"
+              className="input cursor-pointer"
+              value={url}
+              disabled
+            />
+            <button
+              className="ml-4 shadow px-4 py-4 rounded bg-whatsapp text-white"
+              onClick={copyUrl}
+            >
+              COPY
+            </button>
+          </div>
         </div>
         <div className="mt-12">
           Made by{" "}
