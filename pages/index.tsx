@@ -15,6 +15,7 @@ const Home = () => {
 
   const copyUrl = () => {
     copy(url);
+    alert('URL copied')
   };
 
   return (
