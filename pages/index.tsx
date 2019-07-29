@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "../components/layout";
+import copy from "copy-to-clipboard";
 
 const Home = () => {
   const [phone, setPhone] = useState("");
@@ -13,12 +14,7 @@ const Home = () => {
     `https://wa.me/${country}${trimmedPhone}?text=${encodeURIComponent(text)}`;
 
   const copyUrl = () => {
-    const el = document.getElementById("url");
-    if (el) {
-      (el as HTMLInputElement).select();
-      document.execCommand("copy");
-      alert("URL copied");
-    }
+    copy(url);
   };
 
   return (
