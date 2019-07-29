@@ -53,7 +53,7 @@ const Home = () => {
           />
         </div>
         <div className="text-lg">URL:</div>
-        <div className="cursor-pointer">
+        <div>
           <div className="flex items-center">
             <input
               id="url"
@@ -64,6 +64,7 @@ const Home = () => {
             <button
               className="ml-4 shadow px-4 py-4 rounded bg-whatsapp text-white"
               onClick={copyUrl}
+              disabled={!phone}
             >
               COPY
             </button>
