@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "../components/layout";
 import copy from "copy-to-clipboard";
+import Coffee from "../components/ coffee";
 
 const Home = () => {
   const [phone, setPhone] = useState("");
@@ -70,11 +71,14 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <div className="mt-12">
+        <div className="mt-12 mb-4">
           Made by{" "}
           <a className="underline" href="https://muhajir.dev">
             www.muhajir.dev
           </a>
+        </div>
+        <div>
+          <Coffee />
         </div>
       </div>
     </Layout>
